@@ -4,11 +4,13 @@
 #include <iostream>
 #include <math.h>
 #include <algorithm>
+#include <thrust\device_vector.h>
+#include <thrust\extrema.h>
 using namespace std;
 
 #define iterX 10000
-#define Y 1000
-#define BLOCKS 10
+#define Y 100
+#define BLOCKS 100
 #define aS 0.0
 #define aE 5.0
 #define a 0.0
@@ -17,18 +19,8 @@ using namespace std;
 __constant__ double d_distAlpha=(aE-aS)/(Y*BLOCKS);
 __constant__ double d_distX=(b-a)/iterX;
 
-__device__ double d_maxValues[Y*BLOCKS];
-__device__ double d_alphaValues[Y*BLOCKS];
-
-__global__ void integrate()
+__global__ void integrate(double *d_maxValues)
 {
-	//if (blockIdx.x==0 && threadIdx.x == 0)
-	//{
-	//	d_distAlpha = (d_alphaEnd - d_alphaStart) / (double)d_iterationsAlpha;
-	//	d_distX= (d_b - d_a) / (double)d_iterationsX;
-	//}
-	//__syncthreads();
-
 	int currentThreadId = blockIdx.x*blockDim.x + threadIdx.x;
 	double d_y = aS + (currentThreadId+1.0)*(double)d_distAlpha;
 	double d_sum=0;
@@ -42,40 +34,34 @@ __global__ void integrate()
 
 		d_sum = d_sum + ((d_x2 - d_x1) * (d_fa + d_fb)) / 2.0;
 	}
-
-	d_alphaValues[currentThreadId] = d_y;
 	d_maxValues[currentThreadId] = d_sum;
 }
 
 
 int main()
 {
-	double maxValues[Y*BLOCKS];
-	double alphaValues[Y*BLOCKS];
-	for (int i = 0; i < Y*BLOCKS; i++)
-	{
-		maxValues[i] = 0;
-		alphaValues[i] = 0;
-	}
+	double *maxValues = (double*)malloc(BLOCKS*Y * sizeof(double));
+	double *d_maxValues;
+	double max;
+	double alpha;
 
-	double alphavalue, maxvalue;
+	cudaMalloc((void**)&d_maxValues,BLOCKS*Y*sizeof(double));
 
-	integrate << <BLOCKS, Y>> >();
+	integrate << <BLOCKS, Y >> > (d_maxValues);
 
-	cudaMemcpyFromSymbol(&alphaValues, d_alphaValues, Y*BLOCKS * sizeof(double));
-	cudaMemcpyFromSymbol(&maxValues, d_maxValues, Y*BLOCKS * sizeof(double));
+	thrust::device_ptr<double> td_maxValues(d_maxValues);
+	int end = BLOCKS*Y;
+	thrust::device_ptr<double> td_max = thrust::max_element(td_maxValues, td_maxValues + end);
 
-	//TODO parallel reduction
+	max = td_max[0];
+	int diff = &td_max[0] - &td_maxValues[0];
+	alpha = ((aE - aS) / (Y*BLOCKS))*diff;
 
-	//for (size_t i = 0; i < Y*BLOCKS; i++)
-	//{
-	//	std::cout << maxValues[i]<<" - "<<i<<"\n";
-	//}
-	int index = std::distance(maxValues,std::max_element(maxValues, maxValues + Y*BLOCKS));
-	double max = maxValues[index];
-	double alpha = alphaValues[index];
 	std::cout << max << " - max value\n";
 	std::cout << alpha << " - at alpha\n";
+
+	free(maxValues);
+	cudaFree(d_maxValues);
 
 	printf("End\n");
 	std::cin >> "";
