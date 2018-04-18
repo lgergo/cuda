@@ -964,3 +964,7 @@ C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/system/de
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/device_vector.inl
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/host_vector.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/host_vector.inl
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\chrono
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\ratio
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\thr/xtimec.h
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\thr/xthrcommon.h

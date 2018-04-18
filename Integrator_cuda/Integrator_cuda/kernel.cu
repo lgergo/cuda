@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <thrust\device_vector.h>
 #include <thrust\extrema.h>
+#include <chrono>
 using namespace std;
 
 #define iterX 10000
@@ -40,12 +41,13 @@ __global__ void integrate(double *d_maxValues)
 
 int main()
 {
-	double *maxValues = (double*)malloc(BLOCKS*Y * sizeof(double));
 	double *d_maxValues;
 	double max;
 	double alpha;
 
 	cudaMalloc((void**)&d_maxValues,BLOCKS*Y*sizeof(double));
+
+	auto start = std::chrono::high_resolution_clock::now();
 
 	integrate << <BLOCKS, Y >> > (d_maxValues);
 
@@ -53,14 +55,18 @@ int main()
 	int end = BLOCKS*Y;
 	thrust::device_ptr<double> td_max = thrust::max_element(td_maxValues, td_maxValues + end);
 
+	auto finish = std::chrono::high_resolution_clock::now();
+
 	max = td_max[0];
 	int diff = &td_max[0] - &td_maxValues[0];
 	alpha = ((aE - aS) / (Y*BLOCKS))*diff;
 
+	std::chrono::duration<double> elapsed = finish - start;
+
 	std::cout << max << " - max value\n";
 	std::cout << alpha << " - at alpha\n";
+	std::cout << "Elapsed time: " << elapsed.count();
 
-	free(maxValues);
 	cudaFree(d_maxValues);
 
 	printf("End\n");
