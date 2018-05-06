@@ -2,16 +2,14 @@
 #include "device_launch_parameters.h"
 #include <stdio.h>
 #include <iostream>
-#include <math.h>
-#include <algorithm>
 #include <thrust\device_vector.h>
 #include <thrust\extrema.h>
 #include <chrono>
 using namespace std;
 
 #define iterX 10000
-#define Y 100
-#define BLOCKS 100
+#define Y 512
+#define BLOCKS 24
 #define aS 0.0
 #define aE 5.0
 #define a 0.0
@@ -57,13 +55,15 @@ int main()
 
 	auto finish = std::chrono::high_resolution_clock::now();
 
-	max = td_max[0];
-	int diff = &td_max[0] - &td_maxValues[0];
+	max = *td_max;
+	int diff = td_max - &td_maxValues[0];
 	alpha = ((aE - aS) / (Y*BLOCKS))*diff;
 
 	std::chrono::duration<double> elapsed = finish - start;
 
+	std::cout.precision(15);
 	std::cout << max << " - max value\n";
+	std::cout.precision(15);
 	std::cout << alpha << " - at alpha\n";
 	std::cout << "Elapsed time: " << elapsed.count();
 

@@ -395,9 +395,6 @@ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\cerrno
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\xcall_once.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\share.h
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\math.h
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\algorithm
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\xmemory
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust\device_vector.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/config.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/config/config.h
@@ -600,6 +597,7 @@ C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/system/de
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/system/detail/generic/copy.inl
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/internal_functional.h
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\memory
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\xmemory
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/transform.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/detail/transform.inl
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include\thrust/system/detail/generic/transform.h

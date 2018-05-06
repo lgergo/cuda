@@ -4,7 +4,7 @@
 C:/Users/Gergo/OneDrive/10_felev/GPU/Integrator_cuda/Integrator_cuda/Integrator_cuda/kernel.cu(73): warning : conversion from a string literal to "char *" is deprecated
 C:/Users/Gergo/OneDrive/10_felev/GPU/Integrator_cuda/Integrator_cuda/Integrator_cuda/kernel.cu(73): warning : conversion from a string literal to "char *" is deprecated
   kernel.cu
-C:/Users/Gergo/OneDrive/10_felev/GPU/Integrator_cuda/Integrator_cuda/Integrator_cuda/kernel.cu(61): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:/Users/Gergo/OneDrive/10_felev/GPU/Integrator_cuda/Integrator_cuda/Integrator_cuda/kernel.cu(59): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
   Integrator_cuda.vcxproj -> C:\Users\Gergo\OneDrive\10_felev\GPU\Integrator_cuda\Integrator_cuda\x64\Debug\Integrator_cuda.exe
   Integrator_cuda.vcxproj -> C:\Users\Gergo\OneDrive\10_felev\GPU\Integrator_cuda\Integrator_cuda\x64\Debug\Integrator_cuda.pdb (Partial PDB)
   copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\cudart*.dll" "C:\Users\Gergo\OneDrive\10_felev\GPU\Integrator_cuda\Integrator_cuda\x64\Debug\"
